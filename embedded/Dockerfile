@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ros:noetic-ros-base
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     clang-tidy \
     doxygen \ 
     graphviz \
+    gcc-arm-none-eabi \
    && apt-get autoremove -y \
    && rm -rf /var/lib/apt/lists/* \
    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10
