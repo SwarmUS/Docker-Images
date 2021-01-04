@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y \
 RUN python -m pip install --upgrade pip virtualenv
 
 # Install ROS requirements
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
   ros-noetic-rosdoc-lite
 
 # To build the image for a branch or a tag of IDF, pass --build-arg IDF_CLONE_BRANCH_OR_TAG=name.
