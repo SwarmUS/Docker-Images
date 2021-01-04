@@ -67,6 +67,16 @@ RUN $IDF_PATH/install.sh
 # Ccache is installed, enable it by default
 ENV IDF_CCACHE_ENABLE=1
 
+# Install buzz
+RUN git clone https://github.com/MISTLab/Buzz.git /tmp/buzz && \
+    cd /tmp/buzz && \
+    mkdir build && \
+    cd build && \
+    cmake ../src && \
+    make && \
+    make install && \
+    ldconfig
+
 
 
 CMD [ "/bin/bash" ]
