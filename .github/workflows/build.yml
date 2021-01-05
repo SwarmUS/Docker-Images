@@ -3,8 +3,6 @@ name: Docker build image
 on:
    pull_request:
      branches: [ master ]
-   push:
-     branches: [ feat/ci-cd ]
      
 jobs:
   build-image:

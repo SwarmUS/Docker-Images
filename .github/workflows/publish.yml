@@ -2,7 +2,7 @@ name: Docker build image and publish
 
 on:
    push:
-     branches : [ master ]
+     branches: [ master, feat/ci-cd ]
      
 jobs:
   build-image:
@@ -11,6 +11,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image and publish it
       run: |
-        docker build . --file embedded/Dockerfile --tag swarmus/embedded:latest
+        docker build . --file embedded/Dockerfile --tag swarmus/embedded:test
         docker login --username glessard --password ${{ secrets.DOCKER_TOKEN }}
         docker push swarmus/embedded:latest
