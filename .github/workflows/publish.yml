@@ -13,4 +13,4 @@ jobs:
       run: |
         docker build . --file embedded/Dockerfile --tag swarmus/embedded:test
         docker login --username glessard --password ${{ secrets.DOCKER_TOKEN }}
-        docker push swarmus/embedded:latest
+        docker push swarmus/embedded:test
