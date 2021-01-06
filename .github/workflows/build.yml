@@ -1,0 +1,13 @@
+name: Docker build image
+
+on:
+   pull_request:
+     branches: [ master ]
+     
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file embedded/Dockerfile --tag swarmus/embedded:latest
