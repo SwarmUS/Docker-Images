@@ -32,6 +32,8 @@ RUN apt-get update && apt-get install -y \
     doxygen \ 
     graphviz \
     gcc-arm-none-eabi \
+    protobuf-compiler \
+    python3-protobuf \
    && apt-get autoremove -y \
    && rm -rf /var/lib/apt/lists/* \
    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10
