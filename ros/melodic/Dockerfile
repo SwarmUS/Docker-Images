@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     cmake \
     protobuf-compiler \
-    python3-protobuf \
+    python3-protobuf
    && apt-get autoremove -y
 
 RUN python -m pip install --upgrade pip virtualenv
