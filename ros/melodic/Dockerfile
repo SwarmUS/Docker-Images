@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget \
     zip \
-    cmake \
     protobuf-compiler \
     python3-protobuf \
    && apt-get autoremove -y
@@ -26,6 +25,10 @@ RUN git clone https://github.com/MISTLab/Buzz.git /tmp/buzz && \
     make && \
     make install && \
     ldconfig
+
+
+# Installing a more recent cmake since ubuntu is out of date
+RUN pip3 install cmake
 
 
 
