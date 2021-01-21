@@ -21,6 +21,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image and publish it
       run: |
-        docker build . --file ros/melod/Dockerfile --tag swarmus/ros-melodic:latest
+        docker build . --file ros/melodic/Dockerfile --tag swarmus/ros-melodic:latest
         docker login --username swarmuscicd --password ${{ secrets.SWARMUS_CI_CD_DOCKER_TOKEN }}
         docker push swarmus/ros-melodic:latest
