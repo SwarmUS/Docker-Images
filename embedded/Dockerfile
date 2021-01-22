@@ -2,6 +2,12 @@ FROM ros:noetic-ros-base
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Needed to set keys
+RUN apt-get update && apt-get install software-properties-common -y
+
+RUN  apt-key adv --keyserver keys.gnupg.net --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE ||  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+RUN add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo focal main" -u
+
 # We need libpython2.7 due to GDB tools.
 RUN apt-get update && apt-get install -y \
     apt-utils \
@@ -34,6 +40,12 @@ RUN apt-get update && apt-get install -y \
     gcc-arm-none-eabi \
     protobuf-compiler \
     python3-protobuf \
+    wget \
+    python3-rosdep2 \
+    librealsense2-dkms \
+    librealsense2-utils \
+    librealsense2-dev \
+    librealsense2-dbg \
    && apt-get autoremove -y \
    && rm -rf /var/lib/apt/lists/* \
    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10
@@ -68,7 +80,7 @@ RUN echo IDF_CHECKOUT_REF=$IDF_CHECKOUT_REF IDF_CLONE_BRANCH_OR_TAG=$IDF_CLONE_B
     fi
 
 # Install esp-idf toolchain. Will need
-RUN $IDF_PATH/install.sh
+#RUN $IDF_PATH/install.sh
 
 # Ccache is installed, enable it by default
 ENV IDF_CCACHE_ENABLE=1
@@ -82,6 +94,20 @@ RUN git clone https://github.com/MISTLab/Buzz.git /tmp/buzz && \
     make && \
     make install && \
     ldconfig
+
+# Install I2Cdevlib
+RUN mkdir -p /usr/share/arduino/libraries && \
+    cd /usr/share/arduino/libraries && \
+    git clone https://github.com/chrisspen/i2cdevlib.git
+
+# Install Bcm2835
+RUN cd /tmp && \
+    wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.50.tar.gz && \
+    tar zxvf bcm2835-1.50.tar.gz && \
+    cd bcm2835-1.50 && \
+    ./configure && \
+    make && \
+    make install
 
 
 
