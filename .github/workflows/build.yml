@@ -11,13 +11,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file embedded/Dockerfile --tag swarmus/embedded:latest
-      
+
     - name: Verify image
       run: |
         mkdir -p test_ws/src && cd test_ws/src
         git clone https://github.com/SwarmUS/HiveMind -b master --recurse-submodule
         cd ..
-        . /opt/ros/$ROS_DISTRO/setup.sh
+        . /opt/ros/noetic/setup.sh
         rosdep install --from-paths src --ignore-src -r -y
         catkin_make -DENABLE_ERROR_ON_MISSING_TOOL=ON -DENABLE_WARNINGS_AS_ERROR=ON -DENABLE_WARNINGS=ON -DENABLE_CLANG_TIDY_CHECK=ON -DENABLE_TESTS=ON
         
