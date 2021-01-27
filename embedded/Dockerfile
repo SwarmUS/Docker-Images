@@ -79,7 +79,7 @@ RUN echo IDF_CHECKOUT_REF=$IDF_CHECKOUT_REF IDF_CLONE_BRANCH_OR_TAG=$IDF_CLONE_B
     fi
 
 # Install esp-idf toolchain. Will need
-#RUN $IDF_PATH/install.sh
+RUN $IDF_PATH/install.sh
 
 # Ccache is installed, enable it by default
 ENV IDF_CCACHE_ENABLE=1
