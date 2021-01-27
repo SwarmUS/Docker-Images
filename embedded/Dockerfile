@@ -94,19 +94,7 @@ RUN git clone https://github.com/MISTLab/Buzz.git /tmp/buzz && \
     make install && \
     ldconfig
 
-# Install I2Cdevlib
-RUN mkdir -p /usr/share/arduino/libraries && \
-    cd /usr/share/arduino/libraries && \
-    git clone https://github.com/chrisspen/i2cdevlib.git
-
-# Install Bcm2835
-RUN cd /tmp && \
-    wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.50.tar.gz && \
-    tar zxvf bcm2835-1.50.tar.gz && \
-    cd bcm2835-1.50 && \
-    ./configure && \
-    make && \
-    make install
+RUN rosdep update
 
 
 

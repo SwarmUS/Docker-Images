@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file embedded/Dockerfile --tag swarmus/embedded:latest
+      run: docker build . --file embedded/Dockerfile --tag swarmus/embedded:latest        
 
   build-ros-melodic:
     runs-on: ubuntu-latest
