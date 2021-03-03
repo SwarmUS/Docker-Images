@@ -1,6 +1,6 @@
 FROM ros:noetic-ros-base
 
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Needed to set keys
 RUN apt-get update && apt-get install software-properties-common -y
