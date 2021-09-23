@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Needed to set keys
 RUN apt-get update && apt-get install software-properties-common -y
 
-RUN  apt-key adv --keyserver keys.gnupg.net --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE ||  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+RUN  apt-key adv --keyserver keys.gnupg.net --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
 RUN add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo bionic main" -u
 
 RUN apt-get update && apt-get install -y \
@@ -20,9 +20,22 @@ RUN apt-get update && apt-get install -y \
     protobuf-compiler \
     python3-protobuf \
     wget \
+    && apt-get autoremove -y
+
+# Ugly hack, otherwise librealsense2 installation fails.
+RUN apt-get update && apt-get install -y \
     librealsense2-dkms \
+   && apt-get autoremove -y
+
+RUN apt-get update && apt-get install -y \
     librealsense2-utils \
-    librealsense2-dev \
+   && apt-get autoremove -y
+
+RUN apt-get update && apt-get install -y \
+librealsense2-dev \
+&& apt-get autoremove -y
+
+RUN apt-get update && apt-get install -y \
     librealsense2-dbg \
    && apt-get autoremove -y
 
