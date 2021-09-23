@@ -41,26 +41,14 @@ RUN apt-get update && apt-get install -y \
     protobuf-compiler \
     python3-protobuf \
     python3-rosdep2 \
-   && apt-get autoremove -y \
    && rm -rf /var/lib/apt/lists/* \
    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10
   
 # Ugly hack, otherwise librealsense2 installation fails.
-RUN apt-get update && apt-get install -y \
-    librealsense2-dkms \
-   && apt-get autoremove -y
-
-RUN apt-get update && apt-get install -y \
-    librealsense2-utils \
-   && apt-get autoremove -y
-
-RUN apt-get update && apt-get install -y \
-librealsense2-dev \
-&& apt-get autoremove -y
-
-RUN apt-get update && apt-get install -y \
-    librealsense2-dbg \
-   && apt-get autoremove -y
+RUN apt-get update && apt-get install -y librealsense2-dkms
+RUN apt-get update && apt-get install -y librealsense2-utils
+RUN apt-get update && apt-get install -y librealsense2-dev
+RUN apt-get update && apt-get install -y librealsense2-dbg
 
 RUN python -m pip install --upgrade pip virtualenv
 
