@@ -24,3 +24,13 @@ jobs:
         docker build . --file ros/melodic/Dockerfile --tag swarmus/ros-melodic:latest
         docker login --username swarmuscicd --password ${{ secrets.SWARMUS_CI_CD_DOCKER_TOKEN }}
         docker push swarmus/ros-melodic:latest
+
+  publish-ros-noetic-desktop-full:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image and publish it
+      run: |
+        docker build . --file ros/noetic-desktop-full/Dockerfile --tag swarmus/ros-noetic-desktop-full:latest
+        docker login --username swarmuscicd --password ${{ secrets.SWARMUS_CI_CD_DOCKER_TOKEN }}
+        docker push swarmus/ros-noetic-desktop-full:latest
