@@ -18,3 +18,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file ros/melodic/Dockerfile --tag swarmus/ros-melodic:latest
+
+  build-ros-noetic:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file ros/noetic-desktop-full/Dockerfile --tag swarmus/ros-noetic-desktop-full:latest
